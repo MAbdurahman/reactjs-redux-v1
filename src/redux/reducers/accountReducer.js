@@ -7,7 +7,7 @@ const accountInitialState = {
     loanPurpose: ""
 }
 
-function accountReducer( state = accountInitialState, action) {
+export function accountReducer( state = accountInitialState, action) {
     switch(action.type) {
         case accountTypes.ACCOUNT_WITHDRAW:
             return {
@@ -30,9 +30,10 @@ function accountReducer( state = accountInitialState, action) {
         case accountTypes.LOAN_PAYMENT:
             return {
                 ...state,
-                loan: 0,
-                loanPurpose: "",
-                balance: state.balance - state.loan,
+                /*loan: 0,*/
+                loanPurpose: action.payload.purpose,
+                balance: state.balance - action.payload.amount,
+                loan: state.balance
             }
         default:
             return state;
