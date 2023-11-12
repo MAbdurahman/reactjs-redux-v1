@@ -6,6 +6,8 @@ import {customerReducer} from "./reducers/customerReducer";
 import {accountTypes} from "./constants/accountTypes";
 import {customerTypes} from "./constants/customerTypes";
 
+import {depositToAccount, requestLoan, paymentToLoan, withdrawFromAccount} from "./actions/accountActions";
+
 
 const rootReducer = combineReducers({
     account: accountReducer, customer: customerReducer
@@ -31,14 +33,33 @@ store.dispatch({
 
 store.dispatch({
     type: customerTypes.CREATE_CUSTOMER, payload: {
-        fullName: "James Doe", nationalID: "1234567", createdAt: new Date().toLocaleString()
+        fullName: "James Doe", nationalID: "1234567", createdAt: new Date().toISOString()
     }
 })
 
 console.log(store.getState())
 
-store.dispatch({type: accountTypes.LOAN_PAYMENT, payload: {
+store.dispatch({
+    type: accountTypes.LOAN_PAYMENT, payload: {
         amount: 500, purpose: "home repairs"
-    }})
+    }
+})
+
+console.log(store.getState())
+
+store.dispatch({
+    type: accountTypes.LOAN_PAYMENT, payload: {
+        amount: 800, purpose: "home repairs"
+    }
+})
+
+console.log(store.getState())
+
+store.dispatch({type: accountTypes.ACCOUNT_DEPOSIT, payload: 500})
+
+console.log(store.getState())
+
+
+store.dispatch(depositToAccount(300))
 
 console.log(store.getState())

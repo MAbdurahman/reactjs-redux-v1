@@ -33,7 +33,7 @@ export function accountReducer( state = accountInitialState, action) {
                 /*loan: 0,*/
                 loanPurpose: action.payload.purpose,
                 balance: state.balance - action.payload.amount,
-                loan: state.balance
+                loan: state.balance - action.payload.amount
             }
         default:
             return state;
