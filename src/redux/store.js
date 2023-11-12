@@ -7,6 +7,7 @@ import {accountTypes} from "./constants/accountTypes";
 import {customerTypes} from "./constants/customerTypes";
 
 import {depositToAccount, requestLoan, paymentToLoan, withdrawFromAccount} from "./actions/accountActions";
+import {createCustomer, updateCustomer} from "./actions/customerActions";
 
 
 const rootReducer = combineReducers({
@@ -33,7 +34,7 @@ store.dispatch({
 
 store.dispatch({
     type: customerTypes.CREATE_CUSTOMER, payload: {
-        fullName: "James Doe", nationalID: "1234567", createdAt: new Date().toISOString()
+        fullName: "James Doe", nationalID: "1234567", createdAt: new Date().toLocaleString()
     }
 })
 
